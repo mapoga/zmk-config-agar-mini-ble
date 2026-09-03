@@ -202,7 +202,7 @@
 
         studio_unlock: studio_unlock { display-name = "zmk_reserved_studio_unlock"; };
 
-        #endif = //mouse move;;
+        #endif = //mouse move;;;
 
         mmu: mouse_move_up {
             compatible = "zmk,behavior-tap-dance";
@@ -287,6 +287,30 @@
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        HRL: HomeRowLeft {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HRL";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <19 6 31 32 20 7 8 21 33 34 22 9 10 23 35 40 41 42 36 24 12 11>;
+        };
+
+        HRR: HomeRowRight {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HRR";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <0 1 2 3 4 5 13 14 15 16 17 18 25 26 27 28 29 30 37 38 39>;
+        };
     };
 
     combos {
@@ -306,10 +330,10 @@
 
         Base {
             bindings = <
-&lt 2 ESCAPE  &kp Q      &kp W     &kp E  &kp R        &kp T  &kp Y      &kp U  &kp I      &kp O           &kp P      &kp BACKSPACE   &del_ins
-&lt 3 TAB     &kp A      &kp S     &kp D  &kp F        &kp G  &kp H      &kp J  &kp K      &kp L           &kp SEMI   &kp APOSTROPHE
-&kp LSHFT     &kp Z      &kp X     &kp C  &kp V        &kp B  &kp N      &kp M  &kp COMMA  &kp DOT         &kp SLASH  &kp ENTER
-              &kp LCTRL  &kp LALT         &lt 1 SPACE         &kp SPACE                    &kp LEFT_ARROW  &kp RIGHT
+&lt 2 ESCAPE  &kp Q        &kp W            &kp E                &kp R              &kp T  &kp Y      &kp U              &kp I                &kp O            &kp P           &kp BACKSPACE   &del_ins
+&lt 3 TAB     &HRL LGUI A  &HRL LEFT_ALT S  &HRL LEFT_CONTROL D  &HRL LEFT_SHIFT F  &kp G  &kp H      &HRR LEFT_SHIFT J  &HRR LEFT_CONTROL K  &HRR LEFT_ALT L  &HRR LGUI SEMI  &kp APOSTROPHE
+&kp LSHFT     &kp Z        &kp X            &kp C                &kp V              &kp B  &kp N      &kp M              &kp COMMA            &kp DOT          &kp SLASH       &kp ENTER
+              &kp LCTRL    &kp LALT                              &lt 1 SPACE               &kp SPACE                                          &kp LEFT_ARROW   &kp RIGHT
             >;
         };
 
