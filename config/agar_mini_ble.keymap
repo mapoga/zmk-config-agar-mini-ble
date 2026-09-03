@@ -202,7 +202,7 @@
 
         studio_unlock: studio_unlock { display-name = "zmk_reserved_studio_unlock"; };
 
-        #endif = //mouse move;
+        #endif = //mouse move;;
 
         mmu: mouse_move_up {
             compatible = "zmk,behavior-tap-dance";
@@ -306,8 +306,8 @@
 
         Base {
             bindings = <
-&lt 3 ESCAPE  &kp Q      &kp W     &kp E  &kp R        &kp T  &kp Y      &kp U  &kp I      &kp O           &kp P      &kp BACKSPACE   &del_ins
-&lt 2 TAB     &kp A      &kp S     &kp D  &kp F        &kp G  &kp H      &kp J  &kp K      &kp L           &kp SEMI   &kp APOSTROPHE
+&lt 2 ESCAPE  &kp Q      &kp W     &kp E  &kp R        &kp T  &kp Y      &kp U  &kp I      &kp O           &kp P      &kp BACKSPACE   &del_ins
+&lt 3 TAB     &kp A      &kp S     &kp D  &kp F        &kp G  &kp H      &kp J  &kp K      &kp L           &kp SEMI   &kp APOSTROPHE
 &kp LSHFT     &kp Z      &kp X     &kp C  &kp V        &kp B  &kp N      &kp M  &kp COMMA  &kp DOT         &kp SLASH  &kp ENTER
               &kp LCTRL  &kp LALT         &lt 1 SPACE         &kp SPACE                    &kp LEFT_ARROW  &kp RIGHT
             >;
@@ -316,18 +316,9 @@
         Symbols {
             bindings = <
 &kp GRAVE  &trans  &trans  &trans  &trans  &trans  &kp CARET             &kp AT                 &kp HASH          &kp DOLLAR         &kp AMPERSAND    &trans         &trans
-&trans     &trans  &trans  &trans  &trans  &trans  &kp EQUAL             &kp UNDERSCORE         &kp MINUS         &kp PLUS           &kp STAR         &kp ENTER
+&trans     &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp EQUAL             &kp UNDERSCORE         &kp MINUS         &kp PLUS           &kp STAR         &kp ENTER
 &trans     &trans  &trans  &trans  &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp EXCLAMATION  &kp BACKSLASH
            &trans  &trans          &trans          &trans                                                         &kp DOWN           &kp UP
-            >;
-        };
-
-        Numerals {
-            bindings = <
-&trans  &trans        &trans        &trans        &trans  &trans  &trans        &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans  &trans  &trans
-&trans  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5  &trans  &trans  &trans        &kp NUMBER_4  &kp N5        &kp NUMBER_6  &trans  &trans
-&trans  &trans        &trans        &trans        &trans  &trans  &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans
-        &trans        &trans                      &trans          &trans                                    &trans        &trans
             >;
         };
 
@@ -340,13 +331,31 @@
             >;
         };
 
+        Numerals {
+            bindings = <
+&trans  &trans        &trans        &trans        &trans  &trans  &trans        &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans  &trans  &trans
+&trans  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5  &trans  &trans  &trans        &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans  &trans
+&trans  &trans        &trans        &trans        &trans  &trans  &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans
+        &trans        &trans                      &trans          &trans                                    &trans        &trans
+            >;
+        };
+
         Functions {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &kp F12  &kp F7  &kp F8  &kp F9  &trans  &trans  &trans
-&trans  &kp F3  &kp F4  &kp F5  &trans  &trans  &kp F11  &kp F4  &kp F5  &kp F6  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &kp F11  &kp F4  &kp F5  &kp F6  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &kp F10  &kp F1  &kp F2  &kp F3  &trans  &trans
         &trans  &trans          &trans          &trans                   &trans  &trans
             >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        symbols_numerals {
+            if-layers = <1 3>;
+            then-layer = <4>;
         };
     };
 };
